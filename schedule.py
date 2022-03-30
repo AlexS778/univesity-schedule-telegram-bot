@@ -10,6 +10,7 @@ my_json = requests.post(
 ready_json = json.loads(my_json)
 
 
+weeklist = []
 monday = []
 tuesday = []
 wednesday = []
@@ -19,6 +20,7 @@ saturday = []
 
 for element in ready_json:
     if element["НомерДня"] == 1:
+        monday.append(element["НомерДня"])
         monday.append(element["ВременноеОкно"])
         monday.append(element["Дисциплина"])
         monday.append(element["Помещение"])
@@ -42,28 +44,25 @@ for element in ready_json:
         saturday.append(element["ВременноеОкно"])
         saturday.append(element["Дисциплина"])
         saturday.append(element["Помещение"])
+weeklist.append(monday)
+weeklist.append(tuesday)
+weeklist.append(wednesday)
+weeklist.append(thursday)
+weeklist.append(friday)
+weeklist.append(saturday)
 
 
-if datetime.today().strftime("%A") == "Monday":
-    x = " \n ".join(monday)
-    print(x)
-
-if datetime.today().strftime("%A") == "Tuesday":
-    x = " \n ".join(tuesday)
-    print(x)
-    
-if datetime.today().strftime("%A") == "Wednesday":
-    x = " \n ".join(wednesday)
-    print(x)
-
-if datetime.today().strftime("%A") == "Thursday":
-    x = " \n ".join(thursday)
-    print(x)
-
-if datetime.today().strftime("%A") == "Friday":
-    x = " \n ".join(friday)
-    print(x)
-
-if datetime.today().strftime("%A") == "Saturday":
-    x = " \n ".join(Saturday)
-    print(x)
+def ScheduleToday():
+    while True:
+        if datetime.today().strftime("%A") == "Monday":
+            return(" \n ".join(weeklist[0]))
+        if datetime.today().strftime("%A") == "Tuesday":
+            return(" \n ".join(weeklist[1]))
+        if datetime.today().strftime("%A") == "Wednesday":
+            return(" \n ".join(weeklist[2]))
+        if datetime.today().strftime("%A") == "Thursday":
+            return(" \n ".join(weeklist[3]))
+        if datetime.today().strftime("%A") == "Friday":
+            return(" \n ".join(weeklist[4]))
+        if datetime.today().strftime("%A") == "Saturday":
+            return(" \n ".join(weeklist[5]))
